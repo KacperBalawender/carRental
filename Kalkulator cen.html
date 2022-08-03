@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<style>
+    .eee{
+        background-image: url("https://images.pexels.com/photos/56832/road-asphalt-space-sky-56832.jpeg?cs=srgb&dl=pexels-pixabay-56832.jpg&fm=jpg");
+        background-size: 100%;
+    }
+    body{
+        border: none;
+        margin: 0px;
+    }
+     .ee{
+    width: 100%;
+    height: 1000px;
+    background-color: #1a59e071;
+    background-size: 100%;
+
+   }  
+    label{
+        font-weight: bolder;
+        font-size: 15px;
+        font-family:sans-serif;
+        
+    }
+    form{
+ 
+        border: 2px solid black;
+        display:block;
+        padding:5px;
+        background-color: #ffb700;
+        border-radius: 16px;
+        position: relative;
+        top:270px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 25%;
+
+    }
+    input{
+        margin-bottom: 10px;
+        text-align: center;
+
+        
+    }
+    div{
+        display: block;
+    }
+    #xx{
+          display: block;
+    }
+    #ee{
+        display: block;
+    }
+    input[type=text]{
+        text-align: center;
+        display: block;
+        padding:15px;
+        border-radius: 5px;
+        color: black;
+        border-color: white;
+    }
+    input[type=text]::placeholder{
+        font-size: 20px;
+       
+    }
+    input[type=number]::placeholder{
+        font-size: 20px;
+       
+    }
+    input[type=number]{
+        text-align: center;
+        display: block;
+        padding:15px;
+        border-radius: 5px;
+        color: black;
+        border-color: white;
+    }
+    input[type=text]:focus::placeholder{
+        color: white;
+    }
+    input[type=button]{
+        padding: 10px 20px;
+        background-color:#078995;
+        border-radius: 10px;
+        border-color: #068323;
+        font-size: 16px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: white;
+        box-shadow: 0px 5px 10px -5px rgba(66, 68, 90, 1);
+    }
+    input[type=button]:hover{
+       animation-name: but;
+       animation-timing-function: ease-out;
+       animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+    }
+    input[type=button]:active{
+        background-color:#05671c;
+        position: relative;
+        top: 3px;
+    }
+    input[type=date]{
+        border-color: white;
+        color: black;
+        border-radius: 5px;
+        padding:8px;
+        font-size: 15px;
+    }
+   
+</style>
+<body>
+    <div class="eee">
+
+  
+    <div class="ee">
+    <form name="formularz">
+<label for="liczba">Rok otrzymania prawa jazdy</label>
+
+<input type="text" name="liczba" id="t" maxlength="4" required placeholder="Wprowadź rok"> 
+
+<div name="km">
+
+<label for="el">Szacunkowa ilość kilometrów do przejechania w kilometrach</label>
+
+<input type="number" name="el" placeholder="Wprowadź liczbe">
+
+</div>
+
+<label for="f" style="display:block ;">Termin wypożyczenia samochodu</label>
+
+<label for="f">od</label>  
+
+<input type="date" name="f" id="f">
+  
+<label for="f">do</label>  
+
+<input type="date" name="e" id="e">
+
+   <input type="button" onclick="licz()" value="Licz" id="xx">
+   <input type="button" onclick="k1()" value="Basic">
+   <input type="button" onclick="k2()" value="Standart">
+   <input type="button" onclick="k3()" value="Medium">
+   <input type="button" onclick="k4()" value="Premium">
+</div>
+</div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script lang="JavaScript">
+        const models=3;
+        const pa =7.46;
+        const b=1;
+        const s=1.3;
+        const m=1.6;
+        const p=2;
+        const sp=7.1;
+        const dk=200;
+        const rok=2022;
+        var cena=0;
+        var cenap=0;
+        var c=0;
+        function licz(){
+            c=rok-Number(document.formularz.liczba.value);
+            var a=new Date(document.formularz.f.value);
+            var b=new Date(document.formularz.e.value);
+            var diffDays = parseInt((b - a) / (1000 * 60 * 60 * 24));
+            cena=diffDays*dk;
+            if(c<5){
+                cena+=cena*0.2;
+            }
+            if(models<3){
+              cena+=cena*0.15
+            }
+            if(diffDays==1){
+                console.log("Auto będzie wypożyczone na " +diffDays+ " dzień");
+            }else{
+            console.log("Auto będzie wypożyczone na " +diffDays+ " dni");}
+
+            var distance=Number(document.formularz.el.value);
+            cenap=(sp*distance)/100*pa;
+            cenap=cenap.toFixed(2)
+            console.log("Cena paliwa wynosi: "+cenap+" zł");
+        }
+         function k1(){
+            cenak=cena*b;
+            console.log("Cena netto wynosi "+cenak+" zł");
+            console.log("Cena brutto wynosi "+(cenak+cenak*0.23)+" zł");
+         }
+         function k2(){
+            cenak=cena*s;
+            console.log("Cena netto wynosi "+cenak+" zł");
+            console.log("Cena brutto wynosi "+(cenak+cenak*0.23)+" zł");
+        }
+        function k3(){
+            cenak=cena*m;
+            console.log("Cena netto wynosi "+cenak+" zł");
+            console.log("Cena brutto wynosi "+(cenak+cenak*0.23)+" zł");
+        }
+        function k4(){
+            if(c<3){
+                   alert("Nie możesz wybrać opcji Premium")
+            }else{
+                cenak=cena*p;
+            console.log("Cena netto wynosi "+cenak+" zł");
+            console.log("Cena brutto wynosi "+(cenak+cenak*0.23)+" zł");
+            }
+           
+        }
+        
+
+    </script>
+</body>
+</html>
